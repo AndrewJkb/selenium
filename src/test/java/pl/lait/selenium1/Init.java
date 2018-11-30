@@ -16,19 +16,26 @@ public class Init {
 		System.setProperty("webdriver.chrome.driver", "d:\\tester\\chromedriver_win32\\chromedriver.exe");
     	DesiredCapabilities cap = DesiredCapabilities.chrome();
     	
-    	driver = new  ChromeDriver();
+    	if (driver==null) {
+    			driver = new  ChromeDriver();
     	driver.get("http://newtours.demoaut.com");
     	//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);  timeout dla całęj strony
-    	sleep(2);
     	return driver;
-    		
+    	} else {
+    		return driver;
+    	}
 	}
 
 	public static void endTest() {
 		driver.quit();
-		
-	}
+		driver = null;
+		}
 	
+	/**
+	 * Metoda  wstrzymuje wykonanie programu na X sekund
+	 * @param seconds
+	 */
+			
 	public static void sleep(int seconds) {
 		try {
 			Thread.sleep(1000 * seconds);
